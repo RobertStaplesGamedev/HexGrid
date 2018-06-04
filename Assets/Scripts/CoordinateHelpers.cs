@@ -8,18 +8,18 @@ public static class CoordinateHelpers
         return (Math.Abs(origin.xPos - end.xPos) + Math.Abs(origin.yPos - end.yPos) + Math.Abs(origin.zPos - end.zPos)) / 2;
     }
 
-    static int Lerp(int origin, int end, float interval) {
-		return origin + (end - origin);
+    static float Lerp(int origin, int end, float interval) {
+		return origin + (end - origin) * interval;
 	}
 
-    static int[] CubeRound(int[] cube) {
-        int rx = cube[0];
-        int ry = cube[1];
-        int rz = cube[2];
+    static int[] CubeRound(float[] cube) {
+        int rx = (int)Math.Round(cube[0],0);
+        int ry = (int)Math.Round(cube[1],0);
+        int rz = (int)Math.Round(cube[2],0);
 
-        int x_diff = Math.Abs(rx - cube[0]);
-        int y_diff = Math.Abs(ry - cube[1]);
-        int z_diff = Math.Abs(rz - cube[2]);
+        float x_diff = Math.Abs(rx - cube[0]);
+        float y_diff = Math.Abs(ry - cube[1]);
+        float z_diff = Math.Abs(rz - cube[2]);
 
         if (x_diff > y_diff && x_diff > z_diff) {
             rx = -ry-rz;
@@ -33,8 +33,8 @@ public static class CoordinateHelpers
         return new int[] {rx, ry, rz};
     }
 
-	static int[] CubeLerp(Hex a,Hex b, float t) {
-		return new int[] { Lerp(a.xPos, b.xPos, t), Lerp(a.yPos, b.yPos, t), Lerp(a.zPos, b.zPos, t)};
+	static float[] CubeLerp(Hex a,Hex b, float t) {
+		return new float[] { Lerp(a.xPos, b.xPos, t), Lerp(a.yPos, b.yPos, t), Lerp(a.zPos, b.zPos, t)};
 	}
 
 	public static List<int[]> CalculateLine(Hex origin, Hex end) {

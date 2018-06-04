@@ -10,6 +10,7 @@ public class MouseManager : MonoBehaviour {
 	MeshRenderer hexMesh;
 	Hex hoverHex;
 	MeshRenderer hoverHexMesh;
+	List<MeshRenderer> meshLine;
 
 	// Update is called once per frame
 	void Update () {
@@ -69,19 +70,43 @@ public class MouseManager : MonoBehaviour {
 			originHex = ourHitObject.GetComponentInChildren<Hex>();
 		}
 	}
+
 	void DrawLine(GameObject ourHitObject) {
+		if (meshLine == null) {
+			meshLine = new List<MeshRenderer>();
+		}
 		if (hoverHex == null) {
 			hoverHexMesh = ourHitObject.GetComponentInChildren<MeshRenderer>();
 			hoverHexMesh.material.color = Color.blue;
 			hoverHex = ourHitObject.GetComponentInChildren<Hex>();
-		} else if (ourHitObject.GetComponentInChildren<MeshRenderer>() != hexMesh){
+		} else if (ourHitObject != originHex){
+			//Uncolour non selection
 			hoverHexMesh.material.color = Color.white;
+			//Uncolour old lines
+			foreach (MeshRenderer hex in meshLine) {
+				hex.material.color = Color.white;
+			}
+			//Colour lines
+			List<int[]> line = CoordinateHelpers.CalculateLine(originHex, hoverHex);
+			foreach (int[] coordTri in line) {
+				try {
+					MeshRenderer hexInLine = GameObject.Find("Hex_" + coordTri[0] + "_" + coordTri[1] + "_" + coordTri[2]).GetComponentInChildren<MeshRenderer>();
+					if (hexInLine != hoverHex && hexInLine != hexMesh) {
+						hexInLine.material.color = new Color(.35f, .44f, 1f, 1);
+						meshLine.Add(hexInLine);
+					}
+				}
+				catch {
+					Debug.Log("Error: " + coordTri[0] + "_" + coordTri[1] + "_" + coordTri[2]);
+				}
+			}
 			hoverHexMesh = ourHitObject.GetComponentInChildren<MeshRenderer>();
 			hoverHexMesh.material.color = Color.blue;
+			hexMesh.material.color = Color.blue;
 			hoverHex = ourHitObject.GetComponentInChildren<Hex>();
-			CoordinateHelpers.CalculateLine(originHex, hoverHex);
 		}
 	}
+
 	void ColorHex(GameObject ourHitObject) {
 		MeshRenderer mr = ourHitObject.GetComponentInChildren<MeshRenderer>();
 

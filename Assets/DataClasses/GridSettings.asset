@@ -14,7 +14,7 @@ MonoBehaviour:
   mapSystem: 1
   XOffset: 0.882
   ZOffset: 0.75
-  radius: 4
+  radius: 6
   coordinateOffsetSystem: 0
   startingPoint: 0
   gridWidth: 20
