@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27f55263bdf4a452fbcf6d1f352ef059, type: 3}
   m_Name: GridSettings
   m_EditorClassIdentifier: 
-  mapSystem: 1
+  mapSystem: 0
   XOffset: 0.882
   ZOffset: 0.75
   radius: 6

@@ -19,9 +19,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4603252843447738}
-  - component: {fileID: 33723383226712998}
-  - component: {fileID: 23383121337996852}
-  - component: {fileID: 95873132613767058}
+  - component: {fileID: 114300450228901266}
+  - component: {fileID: 33579627612001652}
+  - component: {fileID: 23026968801945604}
   m_Layer: 0
   m_Name: HexFlat
   m_TagString: Untagged
@@ -37,6 +37,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4954831745056578}
+  - component: {fileID: 114282781104078712}
   m_Layer: 0
   m_Name: HexFlat
   m_TagString: Untagged
@@ -71,7 +72,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23383121337996852
+--- !u!23 &23026968801945604
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -105,27 +106,40 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33723383226712998
+--- !u!33 &33579627612001652
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1734078739580466}
-  m_Mesh: {fileID: 4300000, guid: 229bc4e1f550a44e4b1c3257035131a2, type: 3}
---- !u!95 &95873132613767058
-Animator:
-  serializedVersion: 3
+  m_Mesh: {fileID: 0}
+--- !u!114 &114282781104078712
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1953687145609468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e97746e1ca1d14c0ab8d15a60c920929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xPos: 0
+  yPos: 0
+  zPos: 0
+  offsetRow: 0
+  neighbours: []
+  diagonals: []
+--- !u!114 &114300450228901266
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1734078739580466}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 229bc4e1f550a44e4b1c3257035131a2, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea202f0bcd21b4e37b49e72e469df07f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shape: 1
+  debug: 0
