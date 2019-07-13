@@ -45,4 +45,5 @@ public class SphereDraw : MonoBehaviour {
 
 		return new Vector3(x,0,-(y));
 	}
+	
 }

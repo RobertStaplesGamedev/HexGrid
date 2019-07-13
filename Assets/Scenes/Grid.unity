@@ -151,6 +151,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hexPrefab: {fileID: 1599655517792612, guid: b117d5e1cfabe48babc5b235f43969b0, type: 3}
   gridSettings: {fileID: 11400000, guid: a54fc34075dcd477097079ba260a85e2, type: 2}
+  player1: {fileID: 902662446}
+  player2: {fileID: 705182470}
 --- !u!4 &240733717
 Transform:
   m_ObjectHideFlags: 0
@@ -177,7 +179,7 @@ GameObject:
   - component: {fileID: 369221225}
   - component: {fileID: 369221227}
   m_Layer: 0
-  m_Name: HexDraw
+  m_Name: Draw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -192,11 +194,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 369221224}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d288896e12c504ebbb18fbb7311183f1, type: 3}
+  m_Script: {fileID: 11500000, guid: ea202f0bcd21b4e37b49e72e469df07f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 4
-  radius: 4
+  shape: 1
+  debug: 0
 --- !u!4 &369221226
 Transform:
   m_ObjectHideFlags: 0
@@ -219,6 +221,56 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 369221224}
   m_Mesh: {fileID: 0}
+--- !u!1 &705182469
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 705182471}
+  - component: {fileID: 705182470}
+  m_Layer: 0
+  m_Name: Player 2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &705182470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705182469}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d941f370d3c822c40ba638306347f7e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNumber: 2
+  map: {fileID: 240733715}
+  unitPrefab: {fileID: 319189521247359385, guid: 1d2a5162c23fe074d8fe857fd69ae43c,
+    type: 3}
+  unitsAlive: []
+  playerColor: {r: 0, g: 0.28658247, b: 1, a: 0}
+  playerSelectedColor: {r: 0.25943398, g: 0.33566457, b: 1, a: 0}
+--- !u!4 &705182471
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705182469}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.9143121, y: 0.07721615, z: 1.5786864}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &902662444
 GameObject:
   m_ObjectHideFlags: 0
@@ -263,6 +315,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 1
+  map: {fileID: 240733715}
+  unitPrefab: {fileID: 319189521247359385, guid: 1d2a5162c23fe074d8fe857fd69ae43c,
+    type: 3}
+  unitsAlive: []
+  playerColor: {r: 1, g: 0, b: 0, a: 0}
+  playerSelectedColor: {r: 1, g: 0, b: 0, a: 0}
 --- !u!1 &1184829970
 GameObject:
   m_ObjectHideFlags: 0
