@@ -7,6 +7,9 @@ public class GridController : MonoBehaviour {
 	public GameObject hexPrefab;
 
 	public GridSettings gridSettings;
+
+	public LocalPlayer player1;
+	public LocalPlayer player2;
  
 	// Use this for initialization
 	void Start () {
@@ -16,6 +19,9 @@ public class GridController : MonoBehaviour {
 		else if (gridSettings.mapSystem == GridSettings.MapSystem.offset) {
 			DrawOffset();
 		}
+
+		player1.CreateUnits();
+		player2.CreateUnits();
 	}
 	void DrawOffset() {
 		gridSettings.hexgrid = new Hex[gridSettings.gridWidth,gridSettings.gridHeight];

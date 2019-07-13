@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class MouseManager : MonoBehaviour {
 
 	Unit selectedUnit;
-	Hex originHex;
+	public Hex originHex;
 	MeshRenderer hexMesh;
 	Hex hoverHex;
 	MeshRenderer hoverHexMesh;
@@ -31,30 +31,37 @@ public class MouseManager : MonoBehaviour {
 
 		if (Physics.Raycast(ray, out hitInfo)) 
 		{
-			GameObject ourHitObject = hitInfo.collider.transform.parent.gameObject;
 			
-			if(ourHitObject.GetComponent<Hex>() != null) {
+			if (hitInfo.collider.gameObject.GetComponent<Unit>() != null) {
+				GameObject ourHitObject = hitInfo.collider.gameObject;
+				OnUnitClick(ourHitObject);
+			}
+			else if(hitInfo.collider.transform.parent.gameObject.GetComponent<Hex>() != null) {
+				GameObject ourHitObject = hitInfo.collider.transform.parent.gameObject;
 				OnHover(ourHitObject);
 				OnHexClick(ourHitObject);
-			}
-			else if (ourHitObject.GetComponent<Unit>() != null) {
-				//OnUnitClick(ourHitObject);
 			}
 		}
 	}
 	void OnHover(GameObject ourHitObject) {
 		if (originHex != null)
 			DrawLine(ourHitObject);
+		else {
+			//ColorHex(ourHitObject);
+		}
 	}
 	void OnHexClick(GameObject ourHitObject) {
-		if (Input.GetMouseButtonDown(0)) {
+		// if (Input.GetMouseButtonDown(0)) {
 				
-			//ColorHex(ourHitObject);
-			SetLineOrigin(ourHitObject);
+		// 	//ColorHex(ourHitObject);
+		// 	SetLineOrigin(ourHitObject);
 
+		// }
+		if (Input.GetMouseButtonDown(1)) {
 			if (selectedUnit != null)
 			{
-				selectedUnit.destination = ourHitObject.transform.position;
+				selectedUnit.MoveToHex(ourHitObject.GetComponent<Hex>());
+				SetLineOrigin(selectedUnit.currentHex.gameObject);
 			}
 		}
 	}
@@ -132,6 +139,14 @@ public class MouseManager : MonoBehaviour {
 		}
 	}
 	void OnUnitClick(GameObject ourHitObject) {
-		selectedUnit = ourHitObject.GetComponent<Unit>();
+		if (Input.GetMouseButtonDown(0)) {
+			if (selectedUnit != null ) {
+				selectedUnit.UnSelectUnit();
+			}
+			selectedUnit = ourHitObject.GetComponent<Unit>();
+			selectedUnit.SelectUnit();
+			SetLineOrigin(selectedUnit.currentHex.gameObject);
+			DrawLine(selectedUnit.currentHex.gameObject);
+		}
 	}
 }
