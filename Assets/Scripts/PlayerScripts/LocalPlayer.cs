@@ -34,11 +34,14 @@ public class LocalPlayer : MonoBehaviour
 
     void CreateUnit(Hex hex) {
         GameObject newUnit = Instantiate(unitPrefab, hex.transform.position, Quaternion.identity);
-        newUnit.GetComponent<Unit>().currentHex = hex;
-        newUnit.GetComponent<Unit>().unitColor = playerColor;
-        newUnit.GetComponent<Unit>().unitSelectedColor = playerSelectedColor;
         newUnit.GetComponent<MeshRenderer>().material.color = playerColor;
         unitsAlive.Add(newUnit.GetComponent<Unit>());
         newUnit.transform.SetParent(this.transform);
+
+        //TODO: Need to set all unit variables
+        newUnit.GetComponent<Unit>().movementRange = 5;
+        newUnit.GetComponent<Unit>().attackStrength = 1;
+        newUnit.GetComponent<Unit>().health = 5;
+        newUnit.GetComponent<Unit>().UnitCreation(hex, playerColor, playerSelectedColor);
     }
 }

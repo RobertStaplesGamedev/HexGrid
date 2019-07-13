@@ -17,10 +17,23 @@ public class Unit : MonoBehaviour {
 
 	float speed = 4;
 
-	// public void UnitCreation() {
+	//Movement Variables
+	public bool isFlying;
+	public int movementRange;
 
-	// 	this.GetComponent<MeshRenderer>().material.color = unitColor;
-	// }
+	//Attack Variables
+	public int health;
+	public bool isMelee;
+	public int attackStrength;
+	public int attackRange;
+
+	public void UnitCreation(Hex hex, Color playerColor, Color playerSelectedColor) {
+		currentHex = hex;
+		currentHex.unitsOnHex = new List<Unit>();
+		currentHex.unitsOnHex.Add(this);
+        unitColor = playerColor;
+        unitSelectedColor = playerSelectedColor;
+	}
 
 	public void SelectUnit() {
 		//Move the current
@@ -37,8 +50,10 @@ public class Unit : MonoBehaviour {
 		// This is where all my code for unity movement is.
 		if (atLocation) {
 			atLocation = false;
+
 			destination = destinationHex.GetComponent<Transform>().position;
 
+			currentHex.unitsOnHex.Remove(this);
 			currentHex = destinationHex;
 		}
 	}
@@ -51,9 +66,10 @@ public class Unit : MonoBehaviour {
 			velocity = Vector3.ClampMagnitude(velocity, dir.magnitude);
 
 			transform.Translate(velocity);
-		}
-		if (destination != null && currentHex != null) {
-			atLocation = CheckifInRange();
+
+			if (destination != null && currentHex != null) {
+				atLocation = CheckifInRange();
+			}
 		}
 	}
 
@@ -73,6 +89,11 @@ public class Unit : MonoBehaviour {
 
 		if (isatX && isatY) {
 			isAtLocation = true;
+			
+			if (currentHex.unitsOnHex == null) {
+				currentHex.unitsOnHex = new List<Unit>();
+			}
+			currentHex.unitsOnHex.Add(this);
 		}
 		return isAtLocation;
 	}

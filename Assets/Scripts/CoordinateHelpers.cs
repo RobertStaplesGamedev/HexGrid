@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public static class CoordinateHelpers
 {
-    static int CubeDistance(Hex origin, Hex end) {
+    public static int CubeDistance(Hex origin, Hex end) {
         return (Math.Abs(origin.xPos - end.xPos) + Math.Abs(origin.yPos - end.yPos) + Math.Abs(origin.zPos - end.zPos)) / 2;
     }
 

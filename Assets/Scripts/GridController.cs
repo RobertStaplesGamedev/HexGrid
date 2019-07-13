@@ -13,17 +13,17 @@ public class GridController : MonoBehaviour {
  
 	// Use this for initialization
 	void Start () {
-		if (gridSettings.mapSystem == GridSettings.MapSystem.cube) {
-			DrawCube();
-		}
-		else if (gridSettings.mapSystem == GridSettings.MapSystem.offset) {
-			DrawOffset();
-		}
+		// if (gridSettings.mapSystem == GridSettings.MapSystem.cube) {
+		// 	DrawCube();
+		// }
+		// else if (gridSettings.mapSystem == GridSettings.MapSystem.offset) {
+		// 	DrawOffset();
+		// }
 
 		player1.CreateUnits();
 		player2.CreateUnits();
 	}
-	void DrawOffset() {
+	public void DrawOffset() {
 		gridSettings.hexgrid = new Hex[gridSettings.gridWidth,gridSettings.gridHeight];
 
 		for	(int x= 0; x < gridSettings.gridWidth; x++) {
@@ -68,7 +68,7 @@ public class GridController : MonoBehaviour {
 			}
 		}
 	}
-	void DrawCube() {
+	public void DrawCube() {
 		gridSettings.hexgridCubal = new Hex[gridSettings.radius * 2, gridSettings.radius * 2, gridSettings.radius * 2];
 
 		int rowNum = gridSettings.radius;

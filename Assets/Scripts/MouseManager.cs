@@ -60,8 +60,10 @@ public class MouseManager : MonoBehaviour {
 		if (Input.GetMouseButtonDown(1)) {
 			if (selectedUnit != null)
 			{
-				selectedUnit.MoveToHex(ourHitObject.GetComponent<Hex>());
-				SetLineOrigin(selectedUnit.currentHex.gameObject);
+				if (CoordinateHelpers.CubeDistance(originHex, hoverHex) <= selectedUnit.movementRange) {
+					selectedUnit.MoveToHex(ourHitObject.GetComponent<Hex>());
+					SetLineOrigin(selectedUnit.currentHex.gameObject);
+				}
 			}
 		}
 	}
@@ -99,8 +101,10 @@ public class MouseManager : MonoBehaviour {
 				try {
 					MeshRenderer hexInLine = GameObject.Find("Hex_" + coordTri[0] + "_" + coordTri[1] + "_" + coordTri[2]).GetComponentInChildren<MeshRenderer>();
 					if (hexInLine != hoverHex && hexInLine != hexMesh) {
-						hexInLine.material.color = new Color(.35f, .44f, 1f, 1);
-						meshLine.Add(hexInLine);
+						if (CoordinateHelpers.CubeDistance(originHex, hoverHex) <= selectedUnit.movementRange) {
+							hexInLine.material.color = new Color(.35f, .44f, 1f, 1);
+							meshLine.Add(hexInLine);
+						}
 					}
 				}
 				catch {
@@ -108,9 +112,13 @@ public class MouseManager : MonoBehaviour {
 				}
 			}
 			hoverHexMesh = ourHitObject.GetComponentInChildren<MeshRenderer>();
-			hoverHexMesh.material.color = Color.blue;
+			if (CoordinateHelpers.CubeDistance(originHex, hoverHex) <= selectedUnit.movementRange) {
+				hoverHexMesh.material.color = Color.blue;
+			} else {
+				hoverHexMesh.material.color = Color.red;
+			}
 			hexMesh.material.color = Color.blue;
-			hoverHex = ourHitObject.GetComponentInChildren<Hex>();
+			hoverHex = ourHitObject.GetComponentInChildren<Hex>(); 
 		}
 	}
 
@@ -148,5 +156,25 @@ public class MouseManager : MonoBehaviour {
 			SetLineOrigin(selectedUnit.currentHex.gameObject);
 			DrawLine(selectedUnit.currentHex.gameObject);
 		}
+	}
+
+
+	void HexReachable(Hex start, int movement) {
+		// List<Hex> visited = new List<Hex>(); // set of hexes
+		// visited.Add(start);
+		// var fringes = []; //array of arrays of hexes
+		// fringes.append([start]);
+
+		// foreach (1 < k ≤ movement) {
+		// 	fringes.append([])
+		// 	for each hex in fringes[k-1]:
+		// 		for each 0 ≤ dir < 6:
+		// 			var neighbor = hex_neighbor(hex, dir)
+		// 			if neighbor not in visited and not blocked:
+		// 				add neighbor to visited
+		// 				fringes[k].append(neighbor)
+		// }
+
+		// return visited
 	}
 }

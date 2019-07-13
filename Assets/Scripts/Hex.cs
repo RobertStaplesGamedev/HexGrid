@@ -16,6 +16,11 @@ public class Hex : MonoBehaviour {
 	public Hex[] neighbours;
 	public Hex[] diagonals;
 
+	public List<Unit> unitsOnHex;
+
+	public enum Terrain {Mountain, grass}
+	public Terrain terrain;
+
 	public void SetNeighbours(GridSettings settings) {
 		neighbours = new Hex[6];
 		diagonals = new Hex[6];
