@@ -41,9 +41,6 @@ public class Unit : MonoBehaviour {
 
 			currentHex = destinationHex;
 		}
-
-		Debug.Log(atLocation);
-		Debug.Log(currentHex.name);
 	}
 
 	void Update() {
