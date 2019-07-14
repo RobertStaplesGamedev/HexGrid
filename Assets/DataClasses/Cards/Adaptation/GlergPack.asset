@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78a4b8f34395ced4a95124b0bb2482a9, type: 3}
+  m_Name: GlergPack
+  m_EditorClassIdentifier: 
+  title: Glerg Pack
+  Descripton: Summon a pack of glergs to the battlefield. slow moving but tough as
+    fuck
+  cyberneticCost: 0
+  terraformicCost: 0
+  adaptationCost: 7
+  corruptionCost: 0
+  cardType: 3
+  unit: {fileID: 0}
+  value: 0
+  isPermanant: 0

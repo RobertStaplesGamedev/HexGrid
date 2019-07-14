@@ -42,6 +42,12 @@ public class LocalPlayer : MonoBehaviour
         newUnit.GetComponent<Unit>().movementRange = 5;
         newUnit.GetComponent<Unit>().attackStrength = 1;
         newUnit.GetComponent<Unit>().health = 5;
-        newUnit.GetComponent<Unit>().UnitCreation(hex, playerColor, playerSelectedColor);
+        newUnit.GetComponent<Unit>().UnitCreation(hex, this, playerColor, playerSelectedColor);
+    }
+
+    public void ResetUnits() {
+        foreach (Unit unit in unitsAlive) {
+            unit.ResetMovement();
+        }
     }
 }

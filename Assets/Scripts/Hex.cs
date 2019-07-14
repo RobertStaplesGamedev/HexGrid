@@ -110,4 +110,43 @@ public class Hex : MonoBehaviour {
 			}	
 		}
 	}
+
+	public void CheckForMeleeAttacks() {
+		int player1Damage = 0;
+		int player2Damage = 0;
+        foreach (Unit unit in unitsOnHex) {
+			if (unit.playerOwned.playerNumber == 1) {
+				player1Damage += unit.attackStrength;
+			} else if (unit.playerOwned.playerNumber == 2) {
+				player2Damage += unit.attackStrength;
+			}
+		}
+		List<Unit> removeUnits = new List<Unit>();
+		foreach (Unit unit in unitsOnHex) {
+			if (unit.playerOwned.playerNumber == 1) {
+				if (unit.health > player2Damage) {
+					unit.health -= player2Damage;
+					player2Damage = 0;
+				} else if (unit.health <= player2Damage) {
+					player2Damage -= unit.health;
+					removeUnits.Add(unit);
+					unit.DestroyUnit();
+				}
+			}
+
+			if (unit.playerOwned.playerNumber == 2) {
+				if (unit.health > player1Damage) {
+					unit.health -= player1Damage;
+					player1Damage = 0;
+				} else if (unit.health <= player1Damage) {
+					player1Damage -= unit.health;
+					removeUnits.Add(unit);
+					unit.DestroyUnit();
+				}
+			}
+    	}
+		foreach (Unit unit in removeUnits) {
+			unitsOnHex.Remove(unit);
+		}
+	}
 }

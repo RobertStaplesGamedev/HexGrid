@@ -12,6 +12,8 @@ public class MouseManager : MonoBehaviour {
 	MeshRenderer hoverHexMesh;
 	List<MeshRenderer> meshLine;
 
+	public GameController gamecontroller;
+
 	// Update is called once per frame
 	void Update () {
 		
@@ -60,8 +62,8 @@ public class MouseManager : MonoBehaviour {
 		if (Input.GetMouseButtonDown(1)) {
 			if (selectedUnit != null)
 			{
-				if (CoordinateHelpers.CubeDistance(originHex, hoverHex) <= selectedUnit.movementRange) {
-					selectedUnit.MoveToHex(ourHitObject.GetComponent<Hex>());
+				if (CoordinateHelpers.CubeDistance(originHex, hoverHex) <= selectedUnit.movementThisTurn && gamecontroller.playersTurn == selectedUnit.playerOwned.playerNumber) {
+					selectedUnit.MoveToHex(ourHitObject.GetComponent<Hex>(), CoordinateHelpers.CubeDistance(originHex, hoverHex));
 					SetLineOrigin(selectedUnit.currentHex.gameObject);
 				}
 			}
@@ -101,7 +103,7 @@ public class MouseManager : MonoBehaviour {
 				try {
 					MeshRenderer hexInLine = GameObject.Find("Hex_" + coordTri[0] + "_" + coordTri[1] + "_" + coordTri[2]).GetComponentInChildren<MeshRenderer>();
 					if (hexInLine != hoverHex && hexInLine != hexMesh) {
-						if (CoordinateHelpers.CubeDistance(originHex, hoverHex) <= selectedUnit.movementRange) {
+						if (CoordinateHelpers.CubeDistance(originHex, hoverHex) <= selectedUnit.movementThisTurn) {
 							hexInLine.material.color = new Color(.35f, .44f, 1f, 1);
 							meshLine.Add(hexInLine);
 						}
@@ -112,7 +114,7 @@ public class MouseManager : MonoBehaviour {
 				}
 			}
 			hoverHexMesh = ourHitObject.GetComponentInChildren<MeshRenderer>();
-			if (CoordinateHelpers.CubeDistance(originHex, hoverHex) <= selectedUnit.movementRange) {
+			if (CoordinateHelpers.CubeDistance(originHex, hoverHex) <= selectedUnit.movementThisTurn) {
 				hoverHexMesh.material.color = Color.blue;
 			} else {
 				hoverHexMesh.material.color = Color.red;
